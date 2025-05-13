@@ -1,14 +1,18 @@
 [tool.poetry]
 name = "vintasend-flask-mail"
-version = "0.1.2"
+version = "0.1.4"
 description = "Flask Mail adapter for VintaSend"
 authors = ["Hugo bessa <hugo@vinta.com.br>"]
 license = "MIT"
 readme = "README.md"
+packages = [{ include = "vintasend_flask_mail" }]
+include = [
+  { path = "vintasend_flask_mail/py.typed", format = "wheel" }
+]
 
 [tool.poetry.dependencies]
 python = "<3.14,>=3.10"
-vintasend = "0.1.2"
+vintasend = "0.1.4"
 flask-mail = "^0.10.0"
 
 
