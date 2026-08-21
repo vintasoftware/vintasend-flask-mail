@@ -25,7 +25,7 @@ class FlaskMailNotificationAdapterTestCase(TestCase):
 
     def teardown_method(self, method) -> None:
         FakeFileBackend(database_file_name="flask-mail-adapter-test-notifications.json").clear()
-    
+
     def teardown_class(self) -> None:
         FakeFileBackend(database_file_name="flask-mail-adapter-test-notifications.json").clear()
 
@@ -70,8 +70,12 @@ class FlaskMailNotificationAdapterTestCase(TestCase):
         email = outbox[0]
         assert email.subject == notification.subject_template
         assert email.body == notification.body_template
-        assert email.recipients == ["testemail@example.com"]  # This is the email that the FakeFileBackend returns
-        assert email.sender == "foo@example.com"  # This is the email that the FakeFileBackend returns
+        assert email.recipients == [
+            "testemail@example.com"
+        ]  # This is the email that the FakeFileBackend returns
+        assert (
+            email.sender == "foo@example.com"
+        )  # This is the email that the FakeFileBackend returns
 
     @pytest.mark.asyncio
     async def test_send_notification_with_render_error(self):
